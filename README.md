@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/3ba6d19a-ddc5-48d1-9a71-690326a1b544/deploy-status)](https://app.netlify.com/sites/loving-jennings-a1e72b/deploys)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
