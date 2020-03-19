@@ -50,6 +50,7 @@ const BodyWrapper = styled(Typography).attrs({ variant: 'body1' })`
 const Body = styled(ContentEditable)`
   width: 100%;
   transition: text-decoration 300ms;
+  box-sizing: border-box;
 
   &:focus {
     outline: none;

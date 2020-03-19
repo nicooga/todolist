@@ -24,6 +24,7 @@ const Root = styled.form`
 
 const TextField = styled(MuiTextField)`
   width: 100% !important;
+  box-sizing: border-box;
 `
 
 const TodoForm = ({ onCreate }) => {

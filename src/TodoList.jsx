@@ -13,20 +13,23 @@ const Root = styled.div`
   display: flex;
   flex-direction: column;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   justify-content: center;
   align-items: center;
   background-color: tomato;
+  box-sizing: border-box;
 `
 
-const TextBox = styled.div`
+const TextBox = styled(Typography)`
   padding: 24px;
+  box-sizing: border-box;
 `
 
 const List = styled.div`
   display: flex;
   flex-direction: column;
   width: 500px;
+  max-width: 100%;
   background-color: wheat;
   border-radius: 8px;
   padding 8px;
@@ -56,10 +59,8 @@ const TodoList = _props => {
     <>
       <CssBaseline />
       <Root>
-        <TextBox>
-          <Typography variant='h5'>
-            Hello world. These are your todos
-          </Typography>
+        <TextBox variant='h5'>
+          Hello world. These are your todos
         </TextBox>
 
         <List>
@@ -76,12 +77,10 @@ const TodoList = _props => {
           <TodoForm onCreate={updateTodo} />
         </List>
 
-        <TextBox>
-          <Typography variant='subtitle'>
-            Built with &hearts; using React and FaunaDB.
-            Hosted by Netlify. <br />
-            <a href='http://github.com/nicooga/todolist'>http://github.com/nicooga/todolist</a>
-          </Typography>
+        <TextBox variant='subtitle'>
+          Built with &hearts; using React and FaunaDB.
+          Hosted by Netlify. <br />
+          <a href='http://github.com/nicooga/todolist'>http://github.com/nicooga/todolist</a>
         </TextBox>
       </Root>
     </>
