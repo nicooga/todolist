@@ -33,7 +33,7 @@ const TodoForm = ({ onCreate }) => {
 
   const [createTodo] = useMutation(CREATE_TODO_MUTATION)
 
-  const onSubmit = async ev => {
+  const onSubmit = useCallback(async ev => {
     ev.preventDefault()
 
     setFetching(true)
@@ -47,7 +47,7 @@ const TodoForm = ({ onCreate }) => {
     const todo = result.data.createTodo
 
     onCreate(todo._id, todo)
-  }
+  }, [setFetching, setValue, onCreate, createTodo, value])
 
   return (
     <Root onSubmit={onSubmit}>

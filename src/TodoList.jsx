@@ -53,7 +53,13 @@ const TodoList = _props => {
   const [todos, setTodos] = useState({})
 
   const updateTodo = useCallback((id, data) => setTodos(todos => ({ ...todos, [id]: data })), [])
-  useQuery(LIST_TODOS_QUERY, { onCompleted(data) { data.todos.data.forEach(todo => updateTodo(todo._id, todo)) }})
+
+  useQuery(LIST_TODOS_QUERY, {
+    onCompleted(data) {
+      data.todos.data.forEach(todo => updateTodo(todo._id, todo))
+    },
+    onError(error) { throw error }
+  })
 
   return (
     <>
@@ -77,7 +83,7 @@ const TodoList = _props => {
           <TodoForm onCreate={updateTodo} />
         </List>
 
-        <TextBox variant='subtitle'>
+        <TextBox variant='body1'>
           Built with &hearts; using React and FaunaDB.
           Hosted by Netlify. <br />
           <a href='http://github.com/nicooga/todolist'>http://github.com/nicooga/todolist</a>

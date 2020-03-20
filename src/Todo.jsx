@@ -68,8 +68,6 @@ const Todo = ({ id, body: initialBody, done, onUpdate }) => {
   const useFetching = fn => async (...args) => {
     setFetching(true)
 
-    const variables = { id }
-
     try {
       await fn(...args)
     } catch (error) {
@@ -78,6 +76,16 @@ const Todo = ({ id, body: initialBody, done, onUpdate }) => {
 
     setFetching(false)
   }
+
+  const onDelete = useCallback(
+    useFetching(async _ => {
+      const variables = { id }
+      const result = await doDeleteTodo({ variables })
+      const todo = result.data.deleteTodo
+      onUpdate(todo._id, undefined)
+    }),
+    [doDeleteTodo]
+  )
 
   const updateTodo = useCallback(
     useFetching(async data => {
@@ -105,17 +113,7 @@ const Todo = ({ id, body: initialBody, done, onUpdate }) => {
     } else {
       onDelete()
     }
-  }, [updateTodo])
-
-  const onDelete = useCallback(
-    useFetching(async _ => {
-      const variables = { id }
-      const result = await doDeleteTodo({ variables })
-      const todo = result.data.deleteTodo
-      onUpdate(todo._id, undefined)
-    }),
-    [doDeleteTodo]
-  )
+  }, [debouncedUpdateTodo, onDelete])
 
   return (
     <Root
